@@ -1,0 +1,28 @@
+User-Agent: * 
+
+Disallow: /admin
+Disallow: /cache
+Disallow: /apps
+Disallow: /css
+Disallow: /inc
+Disallow: /install
+Disallow: /find
+Disallow: /js
+Disallow: /template
+Disallow: /third
+Disallow: /remind
+Disallow: /login
+Disallow: /register
+Disallow: /account*
+Disallow: /getrent
+Disallow: /contactus
+Disallow: /add
+Disallow: /mailbox
+Disallow: /ipotekaorder
+Disallow: /captcha*
+Disallow: *page=*
+Disallow: *format=pdf*
+Allow: *sitemap.xml*
+Allow: *sitemap_page*
+
+#Sitemap: http://mysite.ru/sitemap.xml

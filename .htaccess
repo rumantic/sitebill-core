@@ -1,0 +1,16 @@
+Options -Indexes
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+RewriteEngine On
+#RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . index.php [L]
+ErrorDocument 404 /404.html
+</IfModule>
+
+<Files ~ "\.(tpl)$">
+Order allow,deny
+Deny from all
+</Files>

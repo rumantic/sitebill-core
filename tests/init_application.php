@@ -1,4 +1,6 @@
 <?php
+use system\lib\SiteBill;
+
 error_reporting(E_ERROR | E_WARNING);
 ini_set('display_errors', 'On');
 

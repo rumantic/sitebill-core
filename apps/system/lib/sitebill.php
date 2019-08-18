@@ -6,6 +6,8 @@
 namespace system\lib;
 
 use factory\Foundation\Router;
+use system\lib\system\SConfig;
+
 if (!defined('DEBUG_MODE')) {
     define('DEBUG_MODE', false);
 }

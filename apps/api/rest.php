@@ -1,4 +1,5 @@
 <?php
+use system\lib\SiteBill;
 
 /**
  * REST API

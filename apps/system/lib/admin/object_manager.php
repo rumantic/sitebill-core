@@ -1,6 +1,7 @@
 <?php
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
+use system\lib\SiteBill;
 
 /**
  * Object manager

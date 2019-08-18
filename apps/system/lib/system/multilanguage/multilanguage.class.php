@@ -1,4 +1,6 @@
 <?php
+use system\lib\system\SConfig;
+use system\lib\system\DBC;
 
 /**
  * Обычная процедурная функция подключается в шаблоне и выполняет перевод с помощью google_translate в шаблонах

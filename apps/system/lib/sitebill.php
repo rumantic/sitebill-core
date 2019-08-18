@@ -155,6 +155,10 @@ $_POST['page'] = $_SESSION['rem_page'];
   }
  */
 class SiteBill {
+    /**
+     * @var bool
+     */
+    private static $template_inited = false;
 
     /**
      * Error message
@@ -194,8 +198,10 @@ class SiteBill {
         if($this->_grid_constructor === null){
             $this->_grid_constructor = self::$_grid_constructor_local;
         }
-        $this->init_template_engine();
-        
+        if ( !self::$template_inited ) {
+            $this->init_template_engine();
+        }
+
 
         //$this->db = new Db( $__server, $__db, $__user, $__password );
         Sitebill_Datetime::setDateFormat($this->getConfigValue('date_format'));
@@ -248,7 +254,7 @@ class SiteBill {
             $this->template->assert('map_type', 'yandex');
         }
         $this->template->assert('estate_folder', SITEBILL_MAIN_URL);
-
+        self::$template_inited = true;
     }
     
     public function checkCSRFToken($csrf_token){

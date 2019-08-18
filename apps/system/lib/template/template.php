@@ -9,7 +9,11 @@ class Template {
     var $templateString; // Template string
     var $item = array(); // Items array
     var $breadcrumbs=array();
-    
+    /**
+     * @var Smarty
+     */
+    private $smarty_instance;
+
 
     /**
     * Constructor of the class
@@ -18,6 +22,7 @@ class Template {
     */
     function Template ($init = null ) {
 		global $sitebill_document_uri;
+		$this->smarty_instance = Sitebill::smarty_instance();
 		$this->assert('_document_uri',$sitebill_document_uri);
     }
 
@@ -43,9 +48,8 @@ class Template {
     * @return boolean
     */
     function assert ( $set, $value ) {
-        global $smarty;
         $this->item[$set] = $value;
-        $smarty->assign($set, $value);
+        $this->smarty_instance->assign($set, $value);
         return true;
     }
     
@@ -60,23 +64,15 @@ class Template {
      * @return boolean
      */
     function assign ( $set, $value ) {
-        global $smarty;
         //echo '<b>set = '.$set.'</b><br>';
         
         $this->item[$set] = $value;
-        //if ( $set == 'grid_items' ) {
-        	//echo '<pre>';
-        	//print_r($this->item);
-        	//echo '</pre>';
-        //}
-        
-        $smarty->assign($set, $value);
+        $this->smarty_instance->assign($set, $value);
         return true;
     }
     
     function fetch ($template) {
-        global $smarty;
-        return $smarty->fetch($template);
+        return $this->smarty_instance->fetch($template);
     }
     
     /**

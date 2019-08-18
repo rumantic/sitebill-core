@@ -159,6 +159,7 @@ class SiteBill {
      * @var bool
      */
     private static $template_inited = false;
+    private static $smarty_instance;
 
     /**
      * Error message
@@ -4156,6 +4157,14 @@ function addFileNotify ( queueSize ) {
         $str = preg_replace('/([^a-z0-9-_])/', '', $str);
         $str = preg_replace('/(-+)/', '-', $str);
         return $str;
+    }
+    public static function smarty_instance() {
+        if (isset(self::$smarty_instance)) {
+            return self::$smarty_instance;
+        }
+
+        self::$smarty_instance = new Smarty();
+        return self::$smarty_instance;
     }
 
     public static function setLangSession() {

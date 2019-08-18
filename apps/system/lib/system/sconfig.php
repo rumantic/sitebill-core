@@ -148,8 +148,14 @@ class SConfig {
     private static function loadDomainConfig() {
         $domain = $_SERVER['HTTP_HOST'];
         $domain = preg_replace('/^www\./', '', $domain);
-        $domain_config = $_SERVER['DOCUMENT_ROOT'] . '/' . $domain . '.config.php';
-        if (file_exists($domain_config)) {
+
+        if ( !isset($_SERVER['DOCUMENT_ROOT']) ) {
+            $document_root = SITEBILL_DOCUMENT_ROOT;
+        } else {
+            $document_root = $_SERVER['DOCUMENT_ROOT'];
+        }
+        $domain_config = $document_root . '/' . $domain . '.config.php';
+        if (@file_exists($domain_config)) {
             include_once $domain_config;
             //print_r($Local_Config);
             //$domain_settings=parse_ini_file($domain_config, true);

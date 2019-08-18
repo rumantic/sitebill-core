@@ -18,7 +18,7 @@ class StackTest extends TestCase
 
     public function testGetAdminUserID () {
         $sitebill = SiteBill::sitebill_instance();
-        $this->assertSame(1, $sitebill->getAdminUserId());
+        $this->assertSame('1', $sitebill->getAdminUserId());
 
     }
 }

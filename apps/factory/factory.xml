@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install>
+    <name>factory</name>
+    <creationDate>August 2019</creationDate>
+    <author>The Sitebill Development Team</author>
+    <authorEmail>kondin@etown.ru</authorEmail>
+    <authorUrl>http://www.sitebill.ru</authorUrl>
+    <copyright>Copyright (C) 2019 Sitebill Team. All rights reserved.</copyright>
+    <license>http://www.sitebill.ru/licenses/sitebill.html</license>
+    <version>0.0.1</version>
+    <backendMenu>false</backendMenu>
+    <administration>
+        <!-- Administration Menu Section -->
+        <menu>Factory</menu>
+    </administration>
+</install>

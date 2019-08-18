@@ -194,28 +194,27 @@ class SiteBill {
         if($this->_grid_constructor === null){
             $this->_grid_constructor = self::$_grid_constructor_local;
         }
+        $this->init_template_engine();
         
+
+        //$this->db = new Db( $__server, $__db, $__user, $__password );
+        Sitebill_Datetime::setDateFormat($this->getConfigValue('date_format'));
+
+        self::setLangSession();
+
+        require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/mysql_db_emulator.php';
+        $this->db = new Mysql_DB_Emulator();
+        $this->load_hooks();
+    }
+
+    public function init_template_engine () {
         global $smarty;
-        /*if (!isset($smarty->registered_plugins['function']['_e'])) {
-            $smarty->registerPlugin("function","_e", "_translate");
-        }*/
-        
-        
         if (!isset($smarty->registered_plugins['function']['_e'])) {
-            $smarty->register_function("_e", "_translate");
+            if ( function_exists('_translate') ) {
+                //$smarty->register_function("_e", "_translate");
+            }
         }
-        
-        /*if(self::$_csrf_token == ''){
-            $valid_thru = time()+1800;
-            self::$_csrf_token = $valid_thru.':'.base64_encode(
-                hash_hmac(
-                    'sha256', 
-                    $valid_thru . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] . $_SESSION['key'],
-                    $this->getConfigValue('csrf_salt'),
-                    true
-                )
-            );
-        }*/
+
 
         $this->template = new Template();
         if ($this->isDemo()) {
@@ -232,16 +231,6 @@ class SiteBill {
         $params_str .= 'SitebillVars.ajaxPath=\'' . SITEBILL_MAIN_URL . '/js/ajax.php\';';
         $params_str = '<script>' . $params_str . '</script>';
         $this->template->assign('SitebillVars', $params_str);
-        /* if(1===(int)$this->getConfigValue('use_heaps')){
-          if(!isset(self::$Heaps['user'])){
-          require_once SITEBILL_DOCUMENT_ROOT.'/user_heap.php';
-          self::$Heaps['user']=$userHeap;
-          }
-          } */
-
-        //$this->db = new Db( $__server, $__db, $__user, $__password );
-        Sitebill_Datetime::setDateFormat($this->getConfigValue('date_format'));
-
         if (defined('ADMIN_NO_MAP')) {
             $this->template->assign('ADMIN_NO_MAP_PROVIDERS', '1');
         } else {
@@ -258,18 +247,8 @@ class SiteBill {
         } else {
             $this->template->assert('map_type', 'yandex');
         }
-        //global $smarty;
-        /* $H=new Url_Helper();
-
-          $H::setEndSlashes(!$this->getConfigValue('apps.seo.no_trailing_slashes'));
-          $this->template->assert('Helpers', $H); */
-        //$smarty->assign('z', new Url_Helper());
         $this->template->assert('estate_folder', SITEBILL_MAIN_URL);
-        self::setLangSession();
 
-        require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/mysql_db_emulator.php';
-        $this->db = new Mysql_DB_Emulator();
-        $this->load_hooks();
     }
     
     public function checkCSRFToken($csrf_token){
@@ -449,7 +428,6 @@ class SiteBill {
                 $gcname = 'Local_Grid_Constructor';
                 self::$_grid_constructor_local = new $gcname();
             } else {
-                require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/sitebill_krascap.php';
                 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/frontend/grid/grid_constructor.php';
                 self::$_grid_constructor_local = new Grid_Constructor();
             }
@@ -468,7 +446,6 @@ class SiteBill {
                 $gcname = 'Local_Kvartira_View';
                 self::$_realty_viewer_local = new $gcname();
             } else {
-                require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/sitebill_krascap.php';
                 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/frontend/view/kvartira_view.php');
                 self::$_realty_viewer_local = new Kvartira_View();
             }

@@ -6,7 +6,6 @@
  */
 error_reporting(E_ERROR | E_WARNING);
 ini_set('display_errors', 'On');
-use Smarty;
 //header("Access-Control-Allow-Origin: *");
 //header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
 //header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
@@ -36,7 +35,6 @@ require_once(SITEBILL_DOCUMENT_ROOT . '/apps/third/vendor/smarty/smarty/libs/Sma
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/init.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/MySQL.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/sitebill.php');
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/sitebill_krascap.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/uploadify/uploadify.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/object_manager.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/multilanguage/multilanguage.class.php');

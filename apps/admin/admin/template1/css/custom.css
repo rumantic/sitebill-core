@@ -1,0 +1,57 @@
+.nolinedotted {
+	padding-left: 17px;
+}
+.dragon {
+	float: left;
+	width: 27px;
+	height: 27px;
+	background-image: url("../img/dragon.png");
+	background-repeat: no-repeat;
+}
+.ttl {
+	float: left;
+	font-size: 85%;
+	color: white;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+
+div.custom_modal {
+    width: 90%;
+    left: 5%;
+   
+    margin-left: 0;
+}
+
+div.custom_modal .modal-body {
+	overflow-y: scroll;
+}
+
+div.custom_modal .modal-body ul {
+    list-style: none;
+        margin: 10px;
+}
+div.custom_modal .modal-body ul li {
+    display: inline-block;
+    width: 250px;
+    margin: 5px 0;
+}
+div.custom_modal .modal-body ul li.letter {
+	display: block;
+    font-size: 120%;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+.ait_bc {margin-left: 15px;} .checkbox_collection {width: 210px;height: 200px;overflow-y: scroll;border: 1px solid silver;padding: 10px 5px;}
+
+a.scrollup {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+    position: fixed;
+    bottom: 50px;
+    /* display: none; */
+    text-indent: -9999px;
+    background: url(../img/icon_top.png) no-repeat;
+}

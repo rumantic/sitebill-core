@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravel/framework": "^5.5",
+        "smarty/smarty": "^3.1"
+    }
+}

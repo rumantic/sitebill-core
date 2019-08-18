@@ -5,8 +5,10 @@
  */
 namespace system\lib;
 
+use system\lib\system\DBC;
 use factory\Foundation\Router;
 use system\lib\system\SConfig;
+use system\lib\system\multilanguage\Multilanguage;
 
 if (!defined('DEBUG_MODE')) {
     define('DEBUG_MODE', false);

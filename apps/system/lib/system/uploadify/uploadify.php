@@ -3,6 +3,8 @@
  * Uploadify class 
  * Store data into UPLOADIFY table
  */
+namespace system\lib\system\uploadify;
+
 use system\lib\SiteBill;
 
 if (  !defined('UPLOADIFY_TABLE')  ) 

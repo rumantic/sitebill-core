@@ -1,6 +1,10 @@
 <?php
 namespace system\lib\system;
 use PDO;
+use PDOException;
+use system\lib\SiteBill;
+use logger\admin\logger_admin;
+use system\lib\system\Logger;
 
 class DBC {
 
@@ -159,8 +163,12 @@ class DBC {
      */
     public function query($query, $params = array(), &$rows = 0, &$success_mark = false) {
         $success = false;
-        $stmt = $this->exec($query, $params, $success, $rows);
-        $success_mark = $success;
+        try {
+            $stmt = $this->exec($query, $params, $success, $rows);
+            $success_mark = $success;
+        } catch (PDOException $e) {
+            logger_admin::write_log($e->getMessage());
+        }
         return $success && $rows ? $stmt : false;
     }
 
@@ -245,7 +253,7 @@ class DBC {
         } catch (PDOException $e) {
             self::$lastError = $e->getMessage();
             $success = false;
-            Logger::append($sql, $e);
+            //Logger::append($sql, $e);
 
             if ($debug) {
                 Debugger::appendException($e);

@@ -1,4 +1,5 @@
 <?php
+use system\lib\SiteBill;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 require_once(SITEBILL_DOCUMENT_ROOT.'/apps/api/classes/class.response.php');

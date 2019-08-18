@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\system\multilanguage;
+
 use system\lib\system\SConfig;
 use system\lib\system\DBC;
 

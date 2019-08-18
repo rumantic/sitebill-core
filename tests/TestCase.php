@@ -1,6 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
 require_once('init_application.php');
+use system\lib\SiteBill;
+
 class StackTest extends TestCase
 {
     public function testGetAdminUserID () {

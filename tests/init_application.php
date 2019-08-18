@@ -1,6 +1,8 @@
 <?php
-use system\lib\SiteBill;
+require __DIR__.'/../apps/system/lib/system/sitebill_autoload.php';
 
+use system\lib\SiteBill;
+use system\lib\system\multilanguage\Multilanguage;
 error_reporting(E_ERROR | E_WARNING);
 ini_set('display_errors', 'On');
 

@@ -160,6 +160,7 @@ class SiteBill {
      */
     private static $template_inited = false;
     private static $smarty_instance;
+    private static $sitebill_instance;
 
     /**
      * Error message
@@ -4164,7 +4165,21 @@ function addFileNotify ( queueSize ) {
         }
 
         self::$smarty_instance = new Smarty();
+        self::$smarty_instance->template_dir = SITEBILL_DOCUMENT_ROOT . '/apps/admin/admin/template1';
+        self::$smarty_instance->cache_dir = SITEBILL_DOCUMENT_ROOT . '/cache/smarty';
+        self::$smarty_instance->compile_dir = SITEBILL_DOCUMENT_ROOT . '/cache/compile';
+
         return self::$smarty_instance;
+    }
+
+    public static function sitebill_instance() {
+        if (isset(self::$sitebill_instance)) {
+            return self::$sitebill_instance;
+        }
+
+        self::$sitebill_instance = new Sitebill();
+
+        return self::$sitebill_instance;
     }
 
     public static function setLangSession() {

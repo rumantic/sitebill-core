@@ -29,15 +29,6 @@ require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/multilanguage/mul
 $sitebill = new SiteBill();
 //$sitebill->writeLog(__METHOD__.', '. var_export($_REQUEST, true));
 
-$smarty->template_dir = SITEBILL_DOCUMENT_ROOT . '/apps/admin/admin/template1';
-$smarty->cache_dir = SITEBILL_DOCUMENT_ROOT . '/cache/smarty';
-$smarty->compile_dir = SITEBILL_DOCUMENT_ROOT . '/cache/compile';
 
 Sitebill::setLangSession();
 Multilanguage::start('backend', $_SESSION['_lang']);
-
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.common.php');
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.controller.php');
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.static_data.php');
-$api_controller = new API_Controller();
-$api_controller->main();

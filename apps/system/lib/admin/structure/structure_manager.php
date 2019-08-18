@@ -1211,7 +1211,7 @@ class Structure_Manager extends SiteBill {
             }
         }
 
-        $current = $this->urlAnalizer();
+        $current = Sitebill::router_instance()->urlAnalizer();
         if ($current !== FALSE) {
             $this->findCurrent($ret, $current);
         }

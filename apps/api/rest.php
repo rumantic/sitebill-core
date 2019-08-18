@@ -38,14 +38,9 @@ require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/sitebill.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/uploadify/uploadify.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/object_manager.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/multilanguage/multilanguage.class.php');
-$smarty = new Smarty;
 
 $sitebill = new SiteBill();
 //$sitebill->writeLog(__METHOD__.', '. var_export($_REQUEST, true));
-
-$smarty->template_dir = SITEBILL_DOCUMENT_ROOT . '/apps/admin/admin/template1';
-$smarty->cache_dir = SITEBILL_DOCUMENT_ROOT . '/cache/smarty';
-$smarty->compile_dir = SITEBILL_DOCUMENT_ROOT . '/cache/compile';
 
 Sitebill::setLangSession();
 Multilanguage::start('backend', $_SESSION['_lang']);

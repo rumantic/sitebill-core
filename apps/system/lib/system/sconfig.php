@@ -1,4 +1,5 @@
 <?php
+namespace system\lib\system;
 
 class SConfig {
 
@@ -17,6 +18,12 @@ class SConfig {
     }
 
     public function getConfigValue($key) {
+        if (isset(self::$config_array[$key])) {
+            return self::$config_array[$key];
+        }
+        return false;
+    }
+    public static function getValue($key) {
         if (isset(self::$config_array[$key])) {
             return self::$config_array[$key];
         }

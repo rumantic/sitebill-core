@@ -1,9 +1,11 @@
 <?php
-
 /**
  * SiteBill parent class
  * @author Kondin Dmitriy <kondin@etown.ru>
  */
+namespace system\lib;
+
+use factory\Foundation\Router;
 if (!defined('DEBUG_MODE')) {
     define('DEBUG_MODE', false);
 }
@@ -110,7 +112,7 @@ require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_datetime
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_router.php';
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_user.php';
 
-$SConfig = SConfig::getInstance();
+$SConfig = \system\lib\system\SConfig::getInstance();
 if ('' != $SConfig->getConfigValue('default_timezone')) {
     ini_set('date.timezone', $SConfig->getConfigValue('default_timezone'));
     //date_default_timezone_set($SConfig->getConfigValue('default_timezone'));
@@ -161,6 +163,9 @@ class SiteBill {
     private static $template_inited = false;
     private static $smarty_instance;
     private static $sitebill_instance;
+    private static $structure_instance;
+    private static $config_instance;
+    private static $router_instance;
 
     /**
      * Error message
@@ -3988,6 +3993,38 @@ function addFileNotify ( queueSize ) {
         self::$sitebill_instance = new Sitebill();
 
         return self::$sitebill_instance;
+    }
+
+    public static function router_instance() {
+        if (isset(self::$router_instance)) {
+            return self::$router_instance;
+        }
+
+        self::$router_instance = new \factory\Foundation\Router();
+
+        return self::$router_instance;
+    }
+
+    public static function config_instance() {
+        if (isset(self::$config_instance)) {
+            return self::$config_instance;
+        }
+
+        self::$config_instance = \system\lib\system\SConfig::getInstance();
+
+        return self::$config_instance;
+    }
+
+    public static function structure_instance() {
+        if (isset(self::$structure_instance)) {
+            return self::$structure_instance;
+        }
+        require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/structure/structure_manager.php');
+        $Structure = new Structure_Manager();
+
+        self::$structure_instance = $Structure;
+
+        return self::$structure_instance;
     }
 
     public static function setLangSession() {

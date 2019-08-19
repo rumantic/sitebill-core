@@ -1,6 +1,5 @@
 <?php
 namespace api\classes;
-use api\classes\API_Common;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 
@@ -42,7 +41,7 @@ class API_Controller extends API_Common {
 
         if (file_exists(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.' . $action . '.php')) {
             require_once (SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.' . $action . '.php');
-            $class_name = 'API_' . $action;
+            $class_name = '\api\classes\API_' . $action;
             //$this->writeLog('$class_name = '.$class_name);
             
             $run_class_action = new $class_name;

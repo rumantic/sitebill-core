@@ -1,5 +1,6 @@
 <?php
 namespace api\classes;
+use system\lib\system\permission\Permission;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 
@@ -31,7 +32,6 @@ class API_model extends API_Common {
         $model_object = $this->init_custom_model_object($model_name);
         $user_id = $this->get_my_user_id();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, $model_name, 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -129,7 +129,6 @@ class API_model extends API_Common {
         $key_value = $this->request->get('key_value');
         $user_id = $this->get_my_user_id();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         //внутри get_access еще надо реализовать проверку доступа к записям из data 
         //сейчас проверка опционально проверяет только группу и разрешает админам удалять
@@ -154,7 +153,6 @@ class API_model extends API_Common {
 
         $data_id = $this->request->get('id');
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         //внутри get_access еще надо реализовать проверку доступа к записям из data 
         //сейчас проверка опционально проверяет только группу и разрешает админам удалять
@@ -177,7 +175,6 @@ class API_model extends API_Common {
 
         $data_id = $this->request->get('id');
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         //внутри get_access еще надо реализовать проверку доступа к записям из data 
         //сейчас проверка опционально проверяет только группу и разрешает админам удалять
@@ -330,7 +327,6 @@ class API_model extends API_Common {
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $data_model = new Data_Model();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, $model_name, 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -363,7 +359,6 @@ class API_model extends API_Common {
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $data_model = new Data_Model();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, $model_name, 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -400,7 +395,6 @@ class API_model extends API_Common {
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $data_model = new Data_Model();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, $model_name, 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -536,7 +530,6 @@ class API_model extends API_Common {
 
         $model_name = $this->request->get('model_name');
         $user_id = $this->get_my_user_id();
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, $model_name, 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -584,7 +577,6 @@ class API_model extends API_Common {
         $data = json_decode(file_get_contents('php://input'), true);
         //$this->writeLog(__METHOD__ . var_export($data, true));
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, 'data', 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -629,7 +621,6 @@ class API_model extends API_Common {
         $client_id = $this->request->get('client_id');
         $user_id = $this->get_my_user_id();
 
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
         $permission = new Permission();
         if (!$permission->get_access($user_id, 'client', 'access')) {
             $response = new API_Response('error', _e('Доступ запрещен'));
@@ -761,7 +752,6 @@ class API_model extends API_Common {
         }
         if ($model_name != '') {
 
-            require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/permission/permission.php' );
             $permission = new Permission();
 
             //@todo надо решить как быть с anonymous доступом, чтобы могли получать доступ гости к таблице объявлений, например.

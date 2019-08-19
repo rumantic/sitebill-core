@@ -2,10 +2,10 @@
 namespace api\classes;
 use system\lib\SiteBill;
 use system\lib\system\user\Login;
+use api\classes\API_Response;
+use api\classes\API_Request;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
-require_once(SITEBILL_DOCUMENT_ROOT.'/apps/api/classes/class.response.php');
-require_once(SITEBILL_DOCUMENT_ROOT.'/apps/api/classes/class.request.php');
 /**
  * API Common class
  * @author Kondin Dmitriy <kondin@etown.ru> http://www.sitebill.ru
@@ -18,7 +18,6 @@ class API_Common extends SiteBill {
      */
     function __construct() {
         $this->request = new API_Request;
-        require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/user/login.php');
         $Login = new Login();
         $Login->checkLogin('', '', true, $this->getRequestValue('session_key'));
         $_POST = $this->request->dump();

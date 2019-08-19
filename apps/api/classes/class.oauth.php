@@ -1,5 +1,8 @@
 <?php
 namespace api\classes;
+use system\lib\system\DBC;
+use system\lib\system\user\Login;
+use system\lib\system\permission\Permission;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 
@@ -14,7 +17,6 @@ class API_oauth extends API_Common {
         $password = $this->request->get('password');
         $rememberme = (int) $this->request->get('rememberme');
 
-        require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/user/login.php');
         $Login = new Login();
 
         //$this->writeLog(array('apps_name' => 'apps.api', 'method' => __METHOD__, 'message' => 'login = ' . $login . ', md5(password) = ' . md5($password), 'type' => NOTICE));

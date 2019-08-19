@@ -1,4 +1,8 @@
 <?php
+namespace system\lib\system\permission;
+use system\lib\SiteBill;
+use system\lib\system\DBC;
+
 /**
  * Permission manager
  * Load matrix of the permission and check access

@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/../../apps/system/lib/system/sitebill_autoload.php';
+require_once("../../inc/db.inc.php");
 
 use system\lib\SiteBill;
 use system\lib\system\uploadify\Sitebill_Uploadify;
@@ -22,7 +23,6 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
 //header('Access-Control-Allow-Origin: *');
 
 session_start();
-require_once("../../inc/db.inc.php");
 
 $settings = parse_ini_file('../../settings.ini.php', true);
 if (isset($settings['Settings']['estate_folder'])AND ( $settings['Settings']['estate_folder'] != '')) {

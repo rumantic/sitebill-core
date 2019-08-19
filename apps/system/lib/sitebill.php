@@ -5,110 +5,16 @@
  */
 namespace system\lib;
 
+require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_autoload.php';
+
+use factory\Foundation\Environment;
 use system\lib\system\DBC;
 use factory\Foundation\Router;
 use system\lib\system\SConfig;
 use system\lib\system\multilanguage\Multilanguage;
 
-if (!defined('DEBUG_MODE')) {
-    define('DEBUG_MODE', false);
-}
-if (!defined('DB_HOST')) {
-    define('DB_HOST', $__server);
-}
-if (!defined('DB_PORT')) {
-    define('DB_PORT', $__db_port);
-}
-if (!defined('DB_BASE')) {
-    define('DB_BASE', $__db);
-}
-if (!defined('DB_USER')) {
-    define('DB_USER', $__user);
-}
-if (!defined('DB_PREFIX')) {
-    define('DB_PREFIX', $__db_prefix);
-}
-if (!defined('DB_PASS')) {
-    define('DB_PASS', $__password);
-}
-if (!defined('DB_DSN')) {
-    if (defined(DB_PORT) && DB_PORT != '') {
-        define('DB_DSN', 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_BASE);
-    } else {
-        define('DB_DSN', 'mysql:host=' . DB_HOST . ';dbname=' . DB_BASE);
-    }
-}
-
-if (!defined('DB_ENCODING')) {
-    define('DB_ENCODING', 'cp1251');
-}
-
-if (!defined('SITE_ENCODING')) {
-    define('SITE_ENCODING', 'windows-1251');
-}
-
-if (!defined('DEBUG_ENABLED')) {
-    define('DEBUG_ENABLED', false);
-}
-
-if (!defined('LOG_ENABLED')) {
-    define('LOG_ENABLED', false);
-}
-
-if (!defined('UPLOADIFY_TABLE')) {
-    define('UPLOADIFY_TABLE', DB_PREFIX . '_uploadify');
-}
-
-if (!defined('IMAGE_TABLE')) {
-    define('IMAGE_TABLE', DB_PREFIX . '_image');
-}
-
-if (!defined('MEDIA_FOLDER')) {
-    define('MEDIA_FOLDER', SITEBILL_DOCUMENT_ROOT . '/img/data');
-}
-
-
-
-if (!defined('ESTATE_FOLDER')) {
-    define('ESTATE_FOLDER', $folder);
-}
-if (!defined('SITEBILL_DOCUMENT_ROOT')) {
-    define('SITEBILL_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . ESTATE_FOLDER);
-}
-
-if (!defined('SITEBILL_APPS_DIR')) {
-    define('SITEBILL_APPS_DIR', SITEBILL_DOCUMENT_ROOT . '/apps');
-}
-if (!defined('SITEBILL_MAIN_URL')) {
-    define('SITEBILL_MAIN_URL', ESTATE_FOLDER);
-}
-/* if(!defined('SITEBILL_MAIN_FULLURL')){
-  define('SITEBILL_MAIN_FULLURL','http://'.$_SERVER['HTTP_HOST'].ESTATE_FOLDER);
-  } */
-/*
-  if(isset($_GET['run_debug'])){
-  define('DEBUG_ENABLED',true);
-  unset($_GET['run_debug']);
-  }
- */
-//require_once(SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_application.php');
-
-/* $_SESSION['csrftoken'] = md5(uniqid(mt_rand() . microtime()));
-  if($_SESSION['csrfsecret']==''){
-  $_SESSION['csrfsecret']=md5(uniqid(mt_rand() . microtime()));
-  } */
-
-/*
-  $salt=substr(md5(time().rand(100,999)), 0, 6);
-  $token = $salt.":".MD5($salt.":".$_SESSION['skey']);
-  setcookie('CSRF-TOKEN', $token, time()+3600, '/', Sitebill::$_cookiedomain); */
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_autoload.php';
-
-
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/debugger.class.php';
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/logger.class.php';
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/dbc.php';
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sconfig.php';
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_datetime.php';
 
 
@@ -126,15 +32,6 @@ if ('' != $SConfig->getConfigValue('default_timezone')) {
 
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_registry.php');
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/multilanguage/multilanguage.class.php';
-/* if(isset($_REQUEST['_lang'])){
-  $_SESSION['_lang']=$_REQUEST['_lang'];
-  }else{
-  if(!isset($_SESSION['_lang'])){
-  $_SESSION['_lang']=$SConfig->getConfigValue('apps.language.default_lang_code');
-  }
-  } */
-//Multilanguage::start('frontend', $_SESSION['_lang']);
-//Sitebill_User::getInstance();
 
 if (isset($_REQUEST['search'])) {
     $_SESSION['rem_page'] = 1;
@@ -146,20 +43,6 @@ if (isset($_REQUEST['page'])) {
 }
 $_POST['page'] = $_SESSION['rem_page'];
 
-//Sitebill::setLangSession();
-//Sitebill::parseLocalSettings();
-//Sitebill::initLocalComponents();
-/*
-  if(!isset($_SESSION['Sitebill_User']) || !is_array($_SESSION['Sitebill_User'])){
-  $_SESSION['Sitebill_User']=array();
-  $_SESSION['Sitebill_User']['name']='';
-  $_SESSION['Sitebill_User']['group_id']=0;
-  $_SESSION['Sitebill_User']['group_name']='Гость';
-  $_SESSION['Sitebill_User']['login']='';
-  $_SESSION['Sitebill_User']['user_id']=0;
-  $_SESSION['Sitebill_User']['group_system_name']='guest';
-  }
- */
 class SiteBill {
     /**
      * @var bool

@@ -1,4 +1,8 @@
 <?php
+namespace system\lib\admin\structure;
+use system\lib\SiteBill;
+use system\lib\admin\structure\Structure_Manager;
+
 
 class Structure_Implements extends SiteBill {
 
@@ -25,7 +29,7 @@ class Structure_Implements extends SiteBill {
     		
     	}else{
     		$manager_file=SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/admin/structure/structure_manager.php';
-    		$manager_class='Structure_Manager';
+    		$manager_class='system\lib\admin\structure\Structure_Manager';
     		//$this->table='topic';
     		//$this->action='structure';
     	}

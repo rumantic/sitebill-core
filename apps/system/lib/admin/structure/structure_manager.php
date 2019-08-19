@@ -1,4 +1,8 @@
 <?php
+namespace system\lib\admin\structure;
+use system\lib\SiteBill;
+use system\lib\system\multilanguage\Multilanguage;
+use system\lib\system\DBC;
 
 /**
  * Structure manager

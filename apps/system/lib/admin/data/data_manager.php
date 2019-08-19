@@ -1,4 +1,9 @@
 <?php
+namespace system\lib\admin\data;
+use system\lib\admin\Object_Manager;
+use system\lib\system\multilanguage\Multilanguage;
+use system\lib\model\Data_Model;
+
 
 /**
  * Data manager
@@ -13,15 +18,13 @@ class Data_Manager extends Object_Manager {
     /**
      * Constructor
      */
-    function Data_Manager() {
+    function __construct() {
         $this->SiteBill();
         $this->table_name = 'data';
         $this->action = 'data';
         $this->app_title = Multilanguage::_('DATA_APP_NAME', 'system');
         $this->primary_key = 'id';
-        $this->update_table();
 
-        require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $data_model = new Data_Model();
         $this->data_model_object = $data_model;
         $this->data_model = $data_model->get_kvartira_model($this->getConfigValue('ajax_form_in_admin'));

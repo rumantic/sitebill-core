@@ -4,6 +4,7 @@ use system\lib\SiteBill;
 use system\lib\system\user\Login;
 use api\classes\API_Response;
 use api\classes\API_Request;
+use system\lib\admin\data\Data_Manager;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 /**
@@ -98,7 +99,6 @@ class API_Common extends SiteBill {
     }
     
     function init_custom_model_object($model_name) {
-        require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/object_manager.php');
         switch ( $model_name ) {
             case 'city':
                 require_once (SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/city/city_manager.php');

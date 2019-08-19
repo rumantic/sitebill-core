@@ -1,5 +1,6 @@
 <?php
 namespace api\classes;
+use system\lib\system\DBC;
 use system\lib\system\permission\Permission;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
@@ -761,7 +762,6 @@ class API_model extends API_Common {
             }
 
             $customentity_admin = $this->init_custom_model_object($model_name);
-
             foreach ($customentity_admin->data_model[$model_name] as $model_item_array) {
                 $columns[] = $model_item_array;
             }

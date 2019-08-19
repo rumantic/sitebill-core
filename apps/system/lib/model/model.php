@@ -1,4 +1,10 @@
 <?php
+namespace system\lib\model;
+use system\lib\SiteBill;
+use table\admin\Admin_Table_Helper;
+use system\lib\system\DBC;
+use system\lib\admin\structure\Structure_Implements;
+use system\lib\system\Sitebill_Datetime;
 
 /**
  * Data model

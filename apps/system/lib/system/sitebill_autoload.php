@@ -1,19 +1,25 @@
 <?php
 spl_autoload_register(function ($className) {
     $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);
-    $file_name = $_SERVER['DOCUMENT_ROOT'] . '/apps/' . $className . '.php';
+    $document_root = $_SERVER['DOCUMENT_ROOT'];
+    $file_name = $document_root . '/apps/' . $className . '.php';
+
+    if ( $className == 'system\lib\model\Data_Model' ) {
+        include_once $document_root . '/apps/system/lib/model/model.php';
+        return;
+    }
+    //echo $className.'<br>';
     if ( @file_exists($file_name) ) {
         include_once $file_name;
     } else {
-        $file_name = $_SERVER['DOCUMENT_ROOT'] . '/apps/' . $className . '.class.php';
+        $file_name = $document_root . '/apps/' . $className . '.class.php';
         if ( @file_exists($file_name) ) {
             include_once $file_name;
         } else {
             if ( preg_match('/API_/', $className) ) {
                 $className = strtolower($className);
                 $className = str_replace('api_', 'class.', $className);
-                $file_name = $_SERVER['DOCUMENT_ROOT'] . '/apps/' . $className . '.php';
-                echo $file_name.'<br>';
+                $file_name = $document_root . '/apps/' . $className . '.php';
                 if ( @file_exists($file_name) ) {
                     include_once $file_name;
                 }

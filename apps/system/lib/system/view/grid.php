@@ -1,4 +1,9 @@
 <?php
+namespace system\lib\system\view;
+use system\lib\SiteBill;
+use system\lib\model\Data_Model;
+use system\lib\system\DBC;
+use system\lib\system\multilanguage\Multilanguage;
 
 /**
  * Construct grid
@@ -56,9 +61,11 @@ class Common_Grid extends Sitebill {
     protected $render_user_id = false;
     
     protected $total_count = 0;
-            
+
     function __construct($grid_object) {
         $this->SiteBill();
+        $this->init_template_engine();
+
         $this->grid_object = $grid_object;
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $this->data_model_controller = new Data_Model();

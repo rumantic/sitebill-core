@@ -14,6 +14,7 @@ use system\lib\system\multilanguage\Multilanguage;
 use system\lib\template\Template;
 use system\lib\system\Sitebill_Datetime;
 use system\lib\db\Mysql_DB_Emulator;
+use system\lib\admin\structure\Structure_Manager;
 
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/debugger.class.php';
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/logger.class.php';
@@ -79,6 +80,10 @@ class SiteBill {
     const MEDIA_SAVE_FOLDER = 1;
     
     public static $_csrf_token = '';
+    /**
+     * @var Template
+     */
+    protected $template;
 
     /**
      * Constructor
@@ -3239,14 +3244,13 @@ function addFileNotify ( queueSize ) {
         $ret['current_page'] = $current_page;
         $ret['total_pages'] = $total_pages;
 
-        global $smarty;
-        $smarty->assign('pager_settings', $pager_settings);
-        $smarty->assign('paging', $ret);
+        $this->template->assign('pager_settings', $pager_settings);
+        $this->template->assign('paging', $ret);
         $tpl = SITEBILL_DOCUMENT_ROOT . '/template/frontend/' . $this->getConfigValue('theme') . '/common_pager.tpl';
         if (!file_exists($tpl)) {
             $tpl = SITEBILL_DOCUMENT_ROOT . '/apps/system/template/common_pager.tpl';
         }
-        return $smarty->fetch($tpl);
+        return $this->template->fetch($tpl);
     }
 
     /**
@@ -3908,7 +3912,6 @@ function addFileNotify ( queueSize ) {
         if (isset(self::$structure_instance)) {
             return self::$structure_instance;
         }
-        require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/admin/structure/structure_manager.php');
         $Structure = new Structure_Manager();
 
         self::$structure_instance = $Structure;

@@ -2,6 +2,8 @@
 namespace system\lib\admin;
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 use system\lib\SiteBill;
+use system\lib\model;
+use system\lib\system\view\Common_Grid;
 
 /**
  * Object manager

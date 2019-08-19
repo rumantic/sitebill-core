@@ -1,4 +1,7 @@
 <?php
+namespace table\admin;
+use system\lib\SiteBill;
+use system\lib\system\DBC;
 
 /**
  * Admin table helper

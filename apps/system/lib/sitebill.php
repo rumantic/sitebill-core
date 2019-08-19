@@ -5,17 +5,18 @@
  */
 namespace system\lib;
 
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_autoload.php';
-
+use Smarty;
 use factory\Foundation\Environment;
 use system\lib\system\DBC;
 use factory\Foundation\Router;
 use system\lib\system\SConfig;
 use system\lib\system\multilanguage\Multilanguage;
+use system\lib\template\Template;
+use system\lib\system\Sitebill_Datetime;
+use system\lib\db\Mysql_DB_Emulator;
 
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/debugger.class.php';
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/logger.class.php';
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_datetime.php';
 
 
 
@@ -83,11 +84,12 @@ class SiteBill {
      * Constructor
      */
     function SiteBill() {
+
         Multilanguage::appendAppDictionary('system');
         require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/template/template.php';
         if (!self::$localSettings) {
-            $this->parseLocalSettings();
-            $this->initLocalComponents();
+            //$this->parseLocalSettings();
+            //$this->initLocalComponents();
         }
         if($this->_grid_constructor === null){
             $this->_grid_constructor = self::$_grid_constructor_local;

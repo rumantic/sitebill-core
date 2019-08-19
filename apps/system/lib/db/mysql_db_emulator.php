@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\db;
+
 class Mysql_DB_Emulator {
 	var $host;
 	var $dbname;

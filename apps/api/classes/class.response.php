@@ -1,4 +1,6 @@
 <?php
+namespace api\classes;
+
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 class API_Response {
     private $state; //success, error

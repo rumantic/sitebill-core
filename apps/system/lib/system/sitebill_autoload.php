@@ -8,6 +8,16 @@ spl_autoload_register(function ($className) {
         $file_name = $_SERVER['DOCUMENT_ROOT'] . '/apps/' . $className . '.class.php';
         if ( @file_exists($file_name) ) {
             include_once $file_name;
+        } else {
+            if ( preg_match('/API_/', $className) ) {
+                $className = strtolower($className);
+                $className = str_replace('api_', 'class.', $className);
+                $file_name = $_SERVER['DOCUMENT_ROOT'] . '/apps/' . $className . '.php';
+                echo $file_name.'<br>';
+                if ( @file_exists($file_name) ) {
+                    include_once $file_name;
+                }
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 <?php
+namespace api\classes;
 use system\lib\SiteBill;
+use system\lib\system\user\Login;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 require_once(SITEBILL_DOCUMENT_ROOT.'/apps/api/classes/class.response.php');
@@ -15,7 +17,6 @@ class API_Common extends SiteBill {
      * Constructor
      */
     function __construct() {
-        $this->Sitebill();
         $this->request = new API_Request;
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/user/login.php');
         $Login = new Login();

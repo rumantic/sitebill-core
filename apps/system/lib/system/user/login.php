@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\system\user;
+use system\lib\SiteBill;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 

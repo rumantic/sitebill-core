@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\template;
+use system\lib\SiteBill;
 /*File: template.php
  *Author: Kondin Dmitry
  *Date: 1.11.05
@@ -20,10 +22,8 @@ class Template {
     * @param: $init - initialize object
     * @return: nothing
     */
-    function Template ($init = null ) {
-		global $sitebill_document_uri;
+    function __construct ($init = null ) {
 		$this->smarty_instance = Sitebill::smarty_instance();
-		$this->assert('_document_uri',$sitebill_document_uri);
     }
 
     /**

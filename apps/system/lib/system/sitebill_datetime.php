@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\system;
+
 class Sitebill_Datetime {
 
 	private static $formattypes=array(

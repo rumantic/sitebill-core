@@ -5,6 +5,7 @@ use system\lib\SiteBill;
 use system\lib\system\uploadify\Sitebill_Uploadify;
 use system\lib\system\multilanguage\multilanguage;
 use system\lib\admin\Object_Manager;
+use api\classes\API_Controller;
 
 /**
  * REST API
@@ -24,7 +25,6 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
 session_start();
 
 
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/third/vendor/smarty/smarty/libs/Smarty.class.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/init.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/MySQL.php');
 
@@ -33,8 +33,6 @@ $sitebill = new SiteBill();
 Sitebill::setLangSession();
 Multilanguage::start('backend', $_SESSION['_lang']);
 
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.common.php');
-require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.controller.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/api/classes/class.static_data.php');
 $api_controller = new API_Controller();
 $api_controller->main();

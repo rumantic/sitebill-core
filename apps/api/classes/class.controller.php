@@ -1,4 +1,6 @@
 <?php
+namespace api\classes;
+use api\classes\API_Common;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 

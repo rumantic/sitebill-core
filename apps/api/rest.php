@@ -1,6 +1,5 @@
 <?php
-require __DIR__.'/../../apps/system/lib/system/sitebill_autoload.php';
-require_once("../../inc/db.inc.php");
+require_once __DIR__.'/../system/bootstrap.php';
 
 use system\lib\SiteBill;
 use system\lib\system\uploadify\Sitebill_Uploadify;
@@ -24,19 +23,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
 
 session_start();
 
-$settings = parse_ini_file('../../settings.ini.php', true);
-if (isset($settings['Settings']['estate_folder'])AND ( $settings['Settings']['estate_folder'] != '')) {
-    $folder = '/' . $settings['Settings']['estate_folder'];
-} else {
-    $folder = '';
-}
-$sitebill_document_root = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . $folder;
 
-define('SITEBILL_DOCUMENT_ROOT', $sitebill_document_root);
-define('SITEBILL_MAIN_URL', $folder);
-define('DB_PREFIX', $__db_prefix);
-
-ini_set("include_path", $include_path);
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/third/vendor/smarty/smarty/libs/Smarty.class.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/init.php');
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/MySQL.php');

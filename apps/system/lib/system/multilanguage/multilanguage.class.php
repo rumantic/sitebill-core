@@ -185,7 +185,6 @@ class Multilanguage {
         //echo $app_name.'='.self::$current_lang.'<br>';
         //echo 'app '.$app_name.'<br>';
 
-        global $smarty;
         $file_name = SITEBILL_DOCUMENT_ROOT . '/apps/' . $app_name . '/language/' . self::$current_lang . '/dictionary.ini';
 
         if (file_exists($file_name)) {
@@ -216,7 +215,7 @@ class Multilanguage {
             self::init_db_lang_words(self::$apps_words);
         }
 
-        self::assign($smarty);
+        //self::assign($smarty);
     }
 
     public static function init_db_lang_words($words) {
@@ -261,7 +260,7 @@ class Multilanguage {
 
     public static function load_db_lang_words() {
         //return;
-        global $smarty;
+        //global $smarty;
 
         $SConfig = SConfig::getInstance();
         $template_key = $SConfig->getConfigValue('theme') . '_template';
@@ -278,7 +277,7 @@ class Multilanguage {
                     self::$words[$ar['word_key']] = $ar['word_default'];
                 }
                 if ($ar['word_app'] == $template_key) {
-                    $smarty->assign($ar['word_key'], $ar['word_default']);
+                    //$smarty->assign($ar['word_key'], $ar['word_default']);
                     self::$is_tpl_loaded = true;
                 }
             }

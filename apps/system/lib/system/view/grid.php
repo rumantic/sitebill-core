@@ -460,7 +460,7 @@ class Common_Grid extends Sitebill {
             //$sort_params=array_merge($sort_params, $this->conditions);
             
             //$this->per_page=3;
-            
+
             $query_no_limit = 'SELECT `'. DB_PREFIX . '_' . $this->grid_object->table_name. '`.* FROM ' . DB_PREFIX . '_' . $this->grid_object->table_name . $left_join_tables . (!empty($where) ? ' WHERE ' . implode(' AND ', $where) : '') . ' ORDER BY ' . $sortby . ' ' . $sortdir . ' ';
             $query_no_limit_total_count = 'SELECT count(`'. DB_PREFIX . '_' . $this->grid_object->table_name. '`' .'.`'.$this->grid_object->primary_key.'`) as total FROM ' . DB_PREFIX . '_' . $this->grid_object->table_name . $left_join_tables . (!empty($where) ? ' WHERE ' . implode(' AND ', $where) : '');
             $query =          'SELECT `'. DB_PREFIX . '_' . $this->grid_object->table_name. '`.* FROM ' . DB_PREFIX . '_' . $this->grid_object->table_name . $left_join_tables . (!empty($where) ? ' WHERE ' . implode(' AND ', $where) : '') . ' ORDER BY ' . $sortby . ' ' . $sortdir . ' ' . (isset($this->per_page) ? 'LIMIT ' . (($this->current_page - 1) * $this->per_page) . ', ' . $this->per_page : '');
@@ -496,7 +496,7 @@ class Common_Grid extends Sitebill {
             } else {
                 $ra = array();
             }
-            
+
             /*echo '<pre>';
             print_r($ra);*/
             
@@ -927,7 +927,7 @@ $rs .= '<div class="modal fade" id="fast_preview_modal" tabindex="-1" role="dial
                 }
                 
                 $row_datas=$this->grid_object->load_by_id($ids);
-                 
+
                 //echo count($row_datas);
                 
                 
@@ -1122,7 +1122,7 @@ $rs .= '<div class="modal fade" id="fast_preview_modal" tabindex="-1" role="dial
                         $rs .= '<td colspan="' . (count($this->grid_controls) + $grid_counter) . '">'.$this->billing_controls($row_data).'</td>';
                         $rs .= '</tr>';
                     }
-                    
+
                 }
                 
                 if(!$disable_mass_delete || $this->batchUpdate || $this->batchActivate){
@@ -1154,7 +1154,9 @@ $rs .= '<div class="modal fade" id="fast_preview_modal" tabindex="-1" role="dial
                 } else {
                     $total = 0;
                 }
+
                 $page_links_list=$this->get_page_links_list($this->current_page, $total, $this->per_page, $pager_params);
+
                 if($page_links_list!=''){
                     $rs .= '<tr><td colspan="' . (count($this->grid_controls) + $grid_counter) . '" class="pager"><div align="center">';
                     $rs .= $page_links_list;
@@ -1452,7 +1454,6 @@ $rs .= '<div class="modal fade" id="fast_preview_modal" tabindex="-1" role="dial
         $DBC = DBC::getInstance();
 
         $query = $this->grid_query . ' LIMIT ' . (($this->current_page - 1) * $this->per_page) . ', ' . $this->per_page;
-        
         $stmt = $DBC->query($query);
 
         if ($stmt) {

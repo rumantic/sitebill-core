@@ -887,17 +887,20 @@ class API_model extends API_Common {
 
             //$this->writeLog('<h1>params</h1>');
             //$this->writeArrayLog($params);
+
             $rows = $customentity_admin->grid_array($params, $default_params);
+
             if ($customentity_admin->getError()) {
                 $response = new API_Response('error', $customentity_admin->GetErrorMessage());
                 return $this->json_string($response->get());
             }
+
             //$this->writeLog('<b>current</b>');
             $rows_index = $this->indexing_rows($rows, $customentity_admin->primary_key);
             if ( $load_collections ) {
                 $rows = $ML->parse_memory_list($collections_domain, $collections_deal_id, $user_id, $customentity_admin->primary_key, $rows);
             }
-            
+
 
             //$this->writeArrayLog($customentity_admin->data_model[$model_name]);
             //$columns = array_values($customentity_admin->data_model[$model_name]);

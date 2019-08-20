@@ -24,7 +24,7 @@ require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/logger.class.php'
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_router.php';
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_user.php';
 
-$SConfig = \system\lib\system\SConfig::getInstance();
+$SConfig = SConfig::getInstance();
 if ('' != $SConfig->getConfigValue('default_timezone')) {
     ini_set('date.timezone', $SConfig->getConfigValue('default_timezone'));
     //date_default_timezone_set($SConfig->getConfigValue('default_timezone'));
@@ -90,7 +90,7 @@ class SiteBill {
      */
     function SiteBill() {
 
-        Multilanguage::appendAppDictionary('system');
+        //Multilanguage::appendAppDictionary('system');
         require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/template/template.php';
         if (!self::$localSettings) {
             //$this->parseLocalSettings();
@@ -3246,11 +3246,14 @@ function addFileNotify ( queueSize ) {
 
         $this->template->assign('pager_settings', $pager_settings);
         $this->template->assign('paging', $ret);
+
+
         $tpl = SITEBILL_DOCUMENT_ROOT . '/template/frontend/' . $this->getConfigValue('theme') . '/common_pager.tpl';
         if (!file_exists($tpl)) {
             $tpl = SITEBILL_DOCUMENT_ROOT . '/apps/system/template/common_pager.tpl';
         }
-        return $this->template->fetch($tpl);
+        //$fres = $this->template->fetch($tpl);
+        return $fres;
     }
 
     /**

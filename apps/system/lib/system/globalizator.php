@@ -1,7 +1,7 @@
 <?php
-require_once ('../../inc/db.inc.php');
+require_once (__DIR__.'/../../../../inc/db.inc.php');
 
-$settings = parse_ini_file('../../settings.ini.php', true);
+$settings = parse_ini_file(__DIR__.'/../../../../settings.ini.php', true);
 if (isset($settings['Settings']['estate_folder'])AND ( $settings['Settings']['estate_folder'] != '')) {
     $folder = '/' . $settings['Settings']['estate_folder'];
 } else {

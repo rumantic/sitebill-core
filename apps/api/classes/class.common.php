@@ -5,6 +5,7 @@ use system\lib\system\user\Login;
 use api\classes\API_Response;
 use api\classes\API_Request;
 use system\lib\admin\data\Data_Manager;
+use system\lib\system\DBC;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 /**

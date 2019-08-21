@@ -23,7 +23,8 @@ class Template {
     * @return: nothing
     */
     function __construct ($init = null ) {
-		$this->smarty_instance = Sitebill::smarty_instance();
+        $template_dir = SITEBILL_DOCUMENT_ROOT . '/template/frontend/realia';
+		$this->smarty_instance = Sitebill::smarty_instance($template_dir);
     }
 
     /**
@@ -73,6 +74,10 @@ class Template {
     
     function fetch ($template) {
         return $this->smarty_instance->fetch($template);
+    }
+
+    function display () {
+        $this->smarty_instance->display('main.tpl');
     }
     
     /**

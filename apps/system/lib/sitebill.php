@@ -112,6 +112,9 @@ class SiteBill {
     }
 
     public function init_template_engine () {
+        if (self::$template_inited) {
+            return true;
+        }
         global $smarty;
         if (!isset($smarty->registered_plugins['function']['_e'])) {
             if ( function_exists('_translate') ) {
@@ -154,7 +157,14 @@ class SiteBill {
         $this->template->assert('estate_folder', SITEBILL_MAIN_URL);
         self::$template_inited = true;
     }
-    
+
+    function get_template_instance () {
+        if ( !isset($this->template) ) {
+            $this->init_template_engine();
+        }
+        return $this->template;
+    }
+
     public function checkCSRFToken($csrf_token){
         list($valid_thru, $token) = explode(':', $csrf_token);
         $n = $valid_thru.':'.base64_encode(
@@ -3865,13 +3875,13 @@ function addFileNotify ( queueSize ) {
         $str = preg_replace('/(-+)/', '-', $str);
         return $str;
     }
-    public static function smarty_instance() {
+    public static function smarty_instance($template_dir) {
         if (isset(self::$smarty_instance)) {
             return self::$smarty_instance;
         }
 
         self::$smarty_instance = new Smarty();
-        self::$smarty_instance->template_dir = SITEBILL_DOCUMENT_ROOT . '/apps/admin/admin/template1';
+        self::$smarty_instance->template_dir = $template_dir;
         self::$smarty_instance->cache_dir = SITEBILL_DOCUMENT_ROOT . '/cache/smarty';
         self::$smarty_instance->compile_dir = SITEBILL_DOCUMENT_ROOT . '/cache/compile';
 

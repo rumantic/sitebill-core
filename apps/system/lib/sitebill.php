@@ -87,7 +87,7 @@ class SiteBill {
      * Constructor
      */
     function SiteBill() {
-
+        //echo 'stbl'."<br>\n";
         //Multilanguage::appendAppDictionary('system');
         if (!self::$localSettings) {
             //$this->parseLocalSettings();

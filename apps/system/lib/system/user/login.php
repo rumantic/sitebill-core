@@ -1,6 +1,7 @@
 <?php
 namespace system\lib\system\user;
 use system\lib\SiteBill;
+use system\lib\system\DBC;
 
 defined('SITEBILL_DOCUMENT_ROOT') or die('Restricted access');
 
@@ -14,6 +15,7 @@ class Login extends SiteBill {
     private $hard_mode;
     private $last_activity_table = 'user';
     private $last_activity_field = 'login_date';
+    private $restore_favorites = true;
 
     /**
      * Constructor
@@ -68,6 +70,10 @@ class Login extends SiteBill {
                 }
             }
         }
+    }
+
+    function disable_restore_favorites () {
+        $this->restore_favorites = false;
     }
 
     function isStillActive($user_id) {
@@ -843,7 +849,9 @@ class Login extends SiteBill {
                           }
                           $_SESSION['current_user_info']=$add_user_data;
                          */
-                        $this->restoreFavorites($ar['user_id']);
+                        if ( $this->restore_favorites ) {
+                            $this->restoreFavorites($ar['user_id']);
+                        }
 
                         //$this->writeLog(array('apps_name' => 'auth', 'method' => 'login', 'message' => 'Авторизация пользователя ID: ' . $ar['user_id'], 'type' => NOTICE));
 

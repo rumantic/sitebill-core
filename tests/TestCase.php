@@ -3,6 +3,7 @@ use PHPUnit\Framework\TestCase;
 require_once('init_application.php');
 use system\lib\SiteBill;
 use system\lib\admin\data\Data_Manager;
+use system\lib\system\user\Login;
 
 class StackTest extends TestCase
 {
@@ -17,6 +18,12 @@ class StackTest extends TestCase
     public function testDataModelLoader () {
         $data_manager = new Data_Manager();
         $this->assertSame('primary_key', $data_manager->data_model['data']['id']['type']);
+    }
+
+    public function testAdminLogin () {
+        $login = new Login();
+        $login->disable_restore_favorites();
+        $this->assertSame(true, $login->checkLogin('testadmin', 'testadmin'));
     }
 
 }

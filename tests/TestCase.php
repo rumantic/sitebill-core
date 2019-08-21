@@ -20,6 +20,11 @@ class StackTest extends TestCase
         $this->assertSame('primary_key', $data_manager->data_model['data']['id']['type']);
     }
 
+    /**
+     * Для работы этого теста нужно создать пользователя в группе админов
+     * Логин: testadmin
+     * Пароль: testadmin
+     */
     public function testAdminLogin () {
         $login = new Login();
         $login->disable_restore_favorites();

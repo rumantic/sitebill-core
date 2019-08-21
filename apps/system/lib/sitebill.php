@@ -16,8 +16,6 @@ use system\lib\system\Sitebill_Datetime;
 use system\lib\db\Mysql_DB_Emulator;
 use system\lib\admin\structure\Structure_Manager;
 
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/debugger.class.php';
-require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/logger.class.php';
 
 
 
@@ -91,7 +89,6 @@ class SiteBill {
     function SiteBill() {
 
         //Multilanguage::appendAppDictionary('system');
-        require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/template/template.php';
         if (!self::$localSettings) {
             //$this->parseLocalSettings();
             //$this->initLocalComponents();
@@ -100,18 +97,18 @@ class SiteBill {
             $this->_grid_constructor = self::$_grid_constructor_local;
         }
         if ( !self::$template_inited ) {
-            $this->init_template_engine();
+            //$this->init_template_engine();
         }
 
 
         //$this->db = new Db( $__server, $__db, $__user, $__password );
         Sitebill_Datetime::setDateFormat($this->getConfigValue('date_format'));
 
-        self::setLangSession();
+        //self::setLangSession();
 
-        require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/mysql_db_emulator.php';
-        $this->db = new Mysql_DB_Emulator();
-        $this->load_hooks();
+        //require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/db/mysql_db_emulator.php';
+        //$this->db = new Mysql_DB_Emulator();
+        //$this->load_hooks();
     }
 
     public function init_template_engine () {

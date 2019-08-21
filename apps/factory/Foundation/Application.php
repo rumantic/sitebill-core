@@ -8,9 +8,13 @@ class Application {
 
     }
 
-    function make () {
+    public function make () {
         $kernel = new AbstractKernel;
 
         return $kernel;
+    }
+
+    public function sendResponse () {
+
     }
 }

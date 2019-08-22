@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\system\view;
+
 /**
  * Class Page_Navigator
  * @author Abushyk Kostyantyn <abushyk@gmail.com>
@@ -45,8 +47,11 @@ class Page_Navigator {
 		
 		$p_prew=$current_page-1;
 		$p_next=$current_page+1;
-		
-		if($current_page==1){
+        $first_page_navigation = '';
+        $last_page_navigation = '';
+        $prev_page_navigation = '';
+        $next_page_navigation = '';
+        if($current_page==1){
 			$first_page_navigation.='&laquo;&laquo; '.Multilanguage::_('L_TO_START');
 			$fpn['text']='&laquo;&laquo;';
 			$fpn['href']=$requestdata['url'].'?page=1';

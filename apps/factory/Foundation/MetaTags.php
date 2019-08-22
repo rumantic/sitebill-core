@@ -1,7 +1,6 @@
 <?php
 namespace factory\Foundation;
 
-
 class MetaTags extends ConfigAndRequest {
     /**
      * @var Request
@@ -12,7 +11,7 @@ class MetaTags extends ConfigAndRequest {
      */
     private $template;
 
-    function __construct(Request $request, Template $template) {
+    function __construct(Request $request, \system\lib\template\Template $template) {
         parent::__construct();
         $this->request = $request;
         $this->template = $template;

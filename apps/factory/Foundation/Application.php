@@ -7,6 +7,7 @@ use DBC;
 use factory\Foundation\AbstractKernel;
 use Multilanguage;
 use predefinedlinks_admin;
+use system\lib\frontend\grid\Grid_Constructor;
 use system\lib\SiteBill;
 use factory\Foundation\MetaTags;
 
@@ -39,6 +40,14 @@ class Application {
 
     function request_instance () {
         return $this->request;
+    }
+
+    function getRequestValue ($key, $type = '', $from = '') {
+        return $this->request->getRequestValue($key, $type, $from);
+    }
+
+    function getConfigValue ($key) {
+        return $this->request->getConfigValue($key);
     }
 
     public function sendResponse () {
@@ -74,21 +83,7 @@ class Application {
         $meta_tags = new \factory\Foundation\MetaTags($this->request_instance(), $this->template_instance());
         $meta_tags->compile($REQUESTURIPATH, $any_url_catched);
 
-        $grid_constructor = $this->_getGridConstructor();
-
-        //$SF=Sitebill_Registry::getInstance();
-        //$SF->clearFeedback('catched_route');
-        //$SF->clearFeedback('catched_route_params');
-
-
-        /* $Sitebill_Registry=Sitebill_Registry::getInstance();
-          if(1==(int)$Sitebill_Registry->getFeedback('route_catched')){
-          $route_catched=true;
-          }else{
-          $route_catched=false;
-          } */
-
-
+        $grid_constructor = new Grid_Constructor($this->template_instance());
 
         $this->setGridViewType();
 
@@ -113,7 +108,7 @@ class Application {
 
         }
 
-        $params_r = $this->gatherRequestParams();
+        $params_r = $this->request_instance()->gatherRequestParams();
         if (!empty($params)) {
             $params = array_merge($params, $params_r);
         } else {
@@ -130,6 +125,20 @@ class Application {
 
 
         return '';
+    }
+    protected function setGridViewType() {
+
+        if (in_array($this->getRequestValue('grid_type'), array('thumbs', 'list'))) {
+            $_SESSION['grid_type'] = $this->getRequestValue('grid_type');
+        } else {
+            if (!isset($_SESSION['grid_type'])) {
+                if ($this->getConfigValue('grid_type') != '') {
+                    $_SESSION['grid_type'] = $this->getConfigValue('grid_type');
+                } else {
+                    $_SESSION['grid_type'] = 'list';
+                }
+            }
+        }
     }
 
 }

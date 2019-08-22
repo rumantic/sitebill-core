@@ -1,4 +1,6 @@
 <?php
+namespace system\lib\frontend\grid;
+use system\lib\SiteBill;
 
 /**
  * SiteBill sitebill.ru interface class

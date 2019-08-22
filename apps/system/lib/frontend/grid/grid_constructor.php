@@ -1,10 +1,17 @@
 <?php
+namespace system\lib\frontend\grid;
+
+use system\lib\model\Data_Model;
+use system\lib\admin\structure\Structure_Manager;
+use system\lib\system\multilanguage\Multilanguage;
+use system\lib\SiteBill;
+use system\lib\system\DBC;
+use system\lib\system\view\Page_Navigator;
 
 /**
  * Grid constructor
  * @author Kondin Dmitriy <kondin@etown.ru> http://www.sitebill.ru
  */
-require_once (SITEBILL_DOCUMENT_ROOT .'/apps/system/lib/frontend/grid/grid_constructor_root.php');
 class Grid_Constructor extends Grid_Constructor_Root {
 
     public $grid_total;
@@ -15,12 +22,13 @@ class Grid_Constructor extends Grid_Constructor_Root {
     /**
      * Constructor
      */
-    function __construct() {
+    function __construct(\system\lib\template\Template $template) {
         $this->SiteBill();
         require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/model/model.php');
         $data_model = new Data_Model();
         $this->grid_item_data_model = $data_model->get_kvartira_model(false, true);
         $this->grid_item_data_model = $this->grid_item_data_model['data'];
+        $this->template = $template;
     }
 
     function vip_right($params) {
@@ -1888,14 +1896,16 @@ class Grid_Constructor extends Grid_Constructor_Root {
         
         
         if ( $this->getConfigValue('apps.complex.push_map') ) {
-            require_once (SITEBILL_DOCUMENT_ROOT.'/apps/complex/admin/admin.php');
-            $complex_admin = new complex_admin();
-            $complex_geodata = $complex_admin->get_geodata();
-            if ( $complex_geodata ) {
-                $gdata = array_merge($gdata, $complex_geodata);
+            if ( file_exists(SITEBILL_DOCUMENT_ROOT.'/apps/complex/admin/admin.php') ) {
+                require_once (SITEBILL_DOCUMENT_ROOT.'/apps/complex/admin/admin.php');
+                $complex_admin = new complex_admin();
+                $complex_geodata = $complex_admin->get_geodata();
+                if ( $complex_geodata ) {
+                    $gdata = array_merge($gdata, $complex_geodata);
+                }
             }
         }
-        
+
         if ( $this->getConfigValue('apps.mapbanner.enable') ) {
             require_once (SITEBILL_DOCUMENT_ROOT.'/apps/mapbanner/admin/admin.php');
             $mapbanner_admin = new mapbanner_admin();

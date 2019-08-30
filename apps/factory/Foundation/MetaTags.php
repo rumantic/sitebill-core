@@ -1,5 +1,7 @@
 <?php
 namespace factory\Foundation;
+use system\lib\system\DBC;
+use system\lib\system\multilanguage\Multilanguage;
 
 class MetaTags extends ConfigAndRequest {
     /**

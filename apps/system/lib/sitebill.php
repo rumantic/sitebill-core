@@ -18,7 +18,6 @@ use system\lib\admin\structure\Structure_Manager;
 
 
 
-
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_router.php';
 //require_once SITEBILL_DOCUMENT_ROOT.'/apps/system/lib/system/sitebill_user.php';
 
@@ -27,9 +26,6 @@ if ('' != $SConfig->getConfigValue('default_timezone')) {
     ini_set('date.timezone', $SConfig->getConfigValue('default_timezone'));
     //date_default_timezone_set($SConfig->getConfigValue('default_timezone'));
 }
-
-
-
 require_once(SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/sitebill_registry.php');
 require_once SITEBILL_DOCUMENT_ROOT . '/apps/system/lib/system/multilanguage/multilanguage.class.php';
 
@@ -114,12 +110,6 @@ class SiteBill {
     public function init_template_engine () {
         if (self::$template_inited) {
             return true;
-        }
-        global $smarty;
-        if (!isset($smarty->registered_plugins['function']['_e'])) {
-            if ( function_exists('_translate') ) {
-                //$smarty->register_function("_e", "_translate");
-            }
         }
 
 
@@ -3882,8 +3872,16 @@ function addFileNotify ( queueSize ) {
 
         self::$smarty_instance = new Smarty();
         self::$smarty_instance->template_dir = $template_dir;
+        //self::$smarty_instance->debugging = true;
         self::$smarty_instance->cache_dir = SITEBILL_DOCUMENT_ROOT . '/cache/smarty';
         self::$smarty_instance->compile_dir = SITEBILL_DOCUMENT_ROOT . '/cache/compile';
+
+        if (!isset(self::$smarty_instance->registered_plugins['function']['_e'])) {
+            if ( function_exists('_translate') ) {
+                self::$smarty_instance->registerPlugin("function","_e", "_translate");
+                //exit;
+            }
+        }
 
         return self::$smarty_instance;
     }

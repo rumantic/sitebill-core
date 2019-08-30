@@ -1,4 +1,2 @@
 realia main template
-<pre>
-    {$grid_items|print_r}
-</pre>
+{include file='realty_grid.tpl'}

@@ -123,7 +123,6 @@ class Application {
 
         $grid_constructor->main($params);
 
-
         return '';
     }
     protected function setGridViewType() {
